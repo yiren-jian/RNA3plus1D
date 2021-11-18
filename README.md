@@ -36,6 +36,8 @@ python trainer.py --num_RNA 200 --num_negative 500 --learning_rate 0.001 --batch
 ```
 By default, the model does not use BatchNorm. Add ```--batch_norm``` if you want to use BatchNorm in your model.
 
+Training takes ~3.4 seconds per iteration and 6.6 GB for ```---bacth_size 1``` on a RTX-A6000.
+
 ## Visualization
 The training loss/curve will be store under ```tensorboard_logdir```. Check [this](https://stackoverflow.com/questions/37987839/how-can-i-run-tensorboard-on-a-remote-server) for visualizing training loss/curve on your local machine.
 
