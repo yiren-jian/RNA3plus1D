@@ -40,4 +40,4 @@ add ```--batch_norm``` if you want to use BatchNorm in your model.
 For any questions, please contact authors.
 
 ## Acknowledgment
-Thanks the author for the original [Conv4D](https://github.com/ZhengyuLiang24/Conv4d-PyTorch) implementation.
+Thanks the author for the original [Conv4d](https://github.com/ZhengyuLiang24/Conv4d-PyTorch) implementation.
