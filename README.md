@@ -28,14 +28,14 @@ main
 
 
 ## Training
-Assuming that you have a total of 200 postive RNAs, and you have 500 negative samples for each RNA.
+Assuming that you have a total of 200 (depending on your dataset) postive RNAs, and you have 500 negative samples for each RNA.
 ```
 python trainer.py --num_RNA 200 --num_negative 500 --learning_rate 0.001 --batch_size 1 --total_steps 50000 --milestone1 30000 --milestone2 40000
 ```
-add ```--batch_norm``` if you want to use BatchNorm in your model.
+By default, the model does not use BatchNorm. Add ```--batch_norm``` if you want to use BatchNorm in your model.
 
 ## Visualization
-The training loss/curve will be store under ```tensorboard_logdir```. Check [this](https://stackoverflow.com/questions/37987839/how-can-i-run-tensorboard-on-a-remote-server) for visualization training loss/curve on your local machine.
+The training loss/curve will be store under ```tensorboard_logdir```. Check [this](https://stackoverflow.com/questions/37987839/how-can-i-run-tensorboard-on-a-remote-server) for visualizing training loss/curve on your local machine.
 
 ## Contacts
 For any questions, please contact authors.
