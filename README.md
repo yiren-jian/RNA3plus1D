@@ -34,7 +34,7 @@ Assuming that you have a total of 200 postive RNAs, and you have 500 negative sa
 ```
 python trainer.py --num_RNA 200 --num_negative 500 --learning_rate 0.001 --batch_size 1 --total_steps 50000 --milestone1 30000 --milestone2 40000
 ```
-add ```'--batch_norm``` if you want to use BatchNorm in your model.
+add ```--batch_norm``` if you want to use BatchNorm in your model.
 
 ## Contacts
 For any questions, please contact authors.
