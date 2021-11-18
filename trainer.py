@@ -6,7 +6,7 @@ import torch.nn.functional as F
 import argparse
 
 from create_dataset import *
-from C4D_35M import *
+from C4D_model import *
 from tqdm import *
 
 import os
