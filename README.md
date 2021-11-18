@@ -2,7 +2,7 @@
 This repo covers the implementation of "4D CNN model for RNA".
 
 ## Requirements
-This repo was tested with Ubuntu 18.04.5 LTS, Python 3.6, PyTorch 1.8.0, tensorboardX, and CUDA 11.0. You will need at least 48GB VRAM (i.e. two Nvidia RTX-A6000) for running full experiments in this repo.
+This repo was tested with Ubuntu 18.04.5 LTS, Python 3.7, PyTorch 1.8.0, tensorboardX, and CUDA 11.0. You will need at least 48GB VRAM (e.g. Nvidia RTX-A6000) for running full experiments in this repo.
 
 ## Data Preparation
 Prepare the data under ```data/train``` and ```data/val```. For example: ```i_0.npy``` is the `i`th positive RNA, and  ```i_j.npy``` is the `j`th negative RNA corresponding to the `i`th positive RNA. Models will be save in ```checkpoints```.
