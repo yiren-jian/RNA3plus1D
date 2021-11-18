@@ -10,6 +10,8 @@ Prepare the data under ```data/train``` and ```data/val```. For example: ```i_0.
 main
 │   README.md
 │   trainer.py   
+│   ...
+│   ...   
 │
 └───data   
 │   └───train
