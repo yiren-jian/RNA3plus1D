@@ -27,9 +27,9 @@ class RNADataset(Dataset):
 
     def __getitem__(self, i):
         positive_index = random.choice(range(self.num_RNA))
-        positive_RNA = torch.from_numpy(np.load(self.data_path + '/%d_0.npy'%(positive_index)))
+        positive_RNA = torch.from_numpy(np.load(self.data_path + '/%d_0.npy'%(positive_index))).permute(1,0,2,3,4)
         negative_index = random.choice(range(1, self.num_negatives+1))
-        negative_RNA = torch.from_numpy(np.load(self.data_path + '/%d_%d.npy'%(positive_index, negative_index)))
+        negative_RNA = torch.from_numpy(np.load(self.data_path + '/%d_%d.npy'%(positive_index, negative_index))).permute(1,0,2,3,4)
 
         positive_RNA = positive_RNA.permute(0,4,2,3,1)
         l = positive_RNA.size(-1)
