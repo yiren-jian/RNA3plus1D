@@ -51,17 +51,17 @@ if __name__ == '__main__':
     RNA_iter = iter(RNA_loader)
 
     model.eval()    ### set model in evaluation mode: for testing behavior of Dropout and BatchNorm
-    correct = 0.0
-    total = 0.0
+    correct = 0.0    ### count number of corrected predicted pairs
+    total = 0.0     #### total number of pairs being evaluated
     for step in tqdm(range(opt.eval_steps)):
-        RNA_pos, RNA_neg, lbl_pos, lbl_neg, index = RNA_iter.__next__()
-        input = torch.cat((RNA_pos, RNA_neg), dim=0).cuda()
-        label = torch.cat((lbl_pos, lbl_neg), dim=0).view(-1).cuda()
+        RNA_pos, RNA_neg, lbl_pos, lbl_neg, index = RNA_iter.__next__()    #### get data
+        input = torch.cat((RNA_pos, RNA_neg), dim=0).cuda()    ### a mini-batch with a positive pair and a negative pair (here is 2=1+1)
+        label = torch.cat((lbl_pos, lbl_neg), dim=0).view(-1).cuda()    #### concatenate the labels accordingly
 
         with torch.no_grad():
-            output = model(input)
-            _, predicted = torch.max(output.data, 1)
-            total += labels.size(0)
-            correct += (predicted == label).sum().item()
+            output = model(input)    ### compute output for the mini-batch  ### output before softmax
+            _, predicted = torch.max(output.data, 1)     #### take the predicted label, e.g. (0.11, 0.70, 0.19) is predicted to be 1, (0.11, 0.19, 0.70) is predicted to be 2
+            total += labels.size(0)    ### label.size(0) is batch size, here is 2=1+1
+            correct += (predicted == label).sum().item()    #### (predicted == label).sum() calculates the number of corrected predicted
 
     print("Finally accuracy is %.4f"%(1 - correct/total))
