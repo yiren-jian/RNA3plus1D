@@ -34,7 +34,7 @@ if __name__ == '__main__':
     #### load the state_dict (dictionary for storing trained parameters)
     model_ckpt = torch.load(opt.model_path)    #### or it may be model_ckpt = torch.load(opt.model_path)['state_dict']
     ### the following is for in case the model being trained using nn.DataParellel
-    import OrderedDict
+    from collections import OrderedDict
     new_state_dict = OrderedDict()
     for k, v in model_ckpt.items():
         name = k.replace("module.","")
