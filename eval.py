@@ -21,9 +21,9 @@ if __name__ == '__main__':
     parser.add_argument('--batch_norm', action='store_true', help='apply BatchNorm in C4D model')
     parser.add_argument('--batch_size', default=1, type=int, help='batch_size')
 
-    parser.add_argument('--max_len', default=128, type=int, help='maximum length of RNAs')
-    parser.add_argument('--num_RNA', default=100, type=int, help='number of postive RNAs')
-    parser.add_argument('--num_negatives', default=500, type=int, help='number of negative RNAs corresponding to a specific positive one')
+    #parser.add_argument('--max_len', default=128, type=int, help='maximum length of RNAs')
+    #parser.add_argument('--num_RNA', default=100, type=int, help='number of postive RNAs')
+    #parser.add_argument('--num_negatives', default=500, type=int, help='number of negative RNAs corresponding to a specific positive one')
 
     parser.add_argument('--eval_steps', default=5000, type=int, help='total number of evaluation steps (evaluated pairs)')
     opt = parser.parse_args()
@@ -34,6 +34,7 @@ if __name__ == '__main__':
     #### load the state_dict (dictionary for storing trained parameters)
     model_ckpt = torch.load(opt.model_path)    #### or it may be model_ckpt = torch.load(opt.model_path)['state_dict']
     ### the following is for in case the model being trained using nn.DataParellel
+    import OrderedDict
     new_state_dict = OrderedDict()
     for k, v in model_ckpt.items():
         name = k.replace("module.","")
