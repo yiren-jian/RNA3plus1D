@@ -4,6 +4,7 @@ import torch.nn as nn
 import torch.optim as optim
 import torch.nn.functional as F
 import argparse
+from collections import OrderedDict
 
 from create_dataset import *
 from C4D_model import *
@@ -21,10 +22,6 @@ if __name__ == '__main__':
     parser.add_argument('--batch_norm', action='store_true', help='apply BatchNorm in C4D model')
     parser.add_argument('--batch_size', default=1, type=int, help='batch_size')
 
-    #parser.add_argument('--max_len', default=128, type=int, help='maximum length of RNAs')
-    #parser.add_argument('--num_RNA', default=100, type=int, help='number of postive RNAs')
-    #parser.add_argument('--num_negatives', default=500, type=int, help='number of negative RNAs corresponding to a specific positive one')
-
     parser.add_argument('--eval_steps', default=5000, type=int, help='total number of evaluation steps (evaluated pairs)')
     opt = parser.parse_args()
 
@@ -34,7 +31,6 @@ if __name__ == '__main__':
     #### load the state_dict (dictionary for storing trained parameters)
     model_ckpt = torch.load(opt.model_path)    #### or it may be model_ckpt = torch.load(opt.model_path)['state_dict']
     ### the following is for in case the model being trained using nn.DataParellel
-    from collections import OrderedDict
     new_state_dict = OrderedDict()
     for k, v in model_ckpt.items():
         name = k.replace("module.","")
@@ -48,7 +44,7 @@ if __name__ == '__main__':
     #### but let's adopt the trianing ones here at this moment
     #### will update later
     RNA_set = RNADataset(root=opt.data_root, train=True, num_RNA=opt.num_RNA, num_negatives=opt.num_negatives, max_len=opt.max_len, data_len=opt.eval_steps)
-    RNA_loader = torch.utils.data.DataLoader(dataset=RNA_trainset, batch_size=opt.batch_size)
+    RNA_loader = torch.utils.data.DataLoader(dataset=RNA_set, batch_size=opt.batch_size)
     RNA_iter = iter(RNA_loader)
 
     model.eval()    ### set model in evaluation mode: for testing behavior of Dropout and BatchNorm
@@ -61,8 +57,9 @@ if __name__ == '__main__':
 
         with torch.no_grad():
             output = model(input)    ### compute output for the mini-batch  ### output before softmax
+#           output = nn.softmax 
             _, predicted = torch.max(output.data, 1)     #### take the predicted label, e.g. (0.11, 0.70, 0.19) is predicted to be 1, (0.11, 0.19, 0.70) is predicted to be 2
-            total += labels.size(0)    ### label.size(0) is batch size, here is 2=1+1
+            total += label.size(0)    ### label.size(0) is batch size, here is 2=1+1
             correct += (predicted == label).sum().item()    #### (predicted == label).sum() calculates the number of corrected predicted
 
     print("Finally accuracy is %.4f"%(1 - correct/total))
