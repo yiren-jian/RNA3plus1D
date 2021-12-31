@@ -57,7 +57,6 @@ if __name__ == '__main__':
 
         with torch.no_grad():
             output = model(input)    ### compute output for the mini-batch  ### output before softmax
-#           output = nn.softmax 
             _, predicted = torch.max(output.data, 1)     #### take the predicted label, e.g. (0.11, 0.70, 0.19) is predicted to be 1, (0.11, 0.19, 0.70) is predicted to be 2
             total += label.size(0)    ### label.size(0) is batch size, here is 2=1+1
             correct += (predicted == label).sum().item()    #### (predicted == label).sum() calculates the number of corrected predicted
