@@ -1,5 +1,14 @@
-# RNA3+1D: Sequence Convolution for 3D-RNA modeling
-This repo covers the implementation of "4D CNN model for RNA".
+# RNA3+1D: Sequence Convolution for 3D-RNA Modeling
+This repo covers the implementation of "3+1D CNN model for RNA". The following files are tested
+
+- [x] `C3D_model.py`
+- [x] `C3D_model_new.py`
+- [x] `C4D_model.py`
+- [x] `Conv4d.py`
+- [ ] `eval.py`
+- [ ] `pred.py`
+- [ ] `trainer.py`
+- [ ] `trainer_C3D.py`
 
 ## Requirements
 This repo was tested with Ubuntu 18.04.5 LTS, Python 3.7, PyTorch 1.8.0, tensorboardX, and CUDA 11.0. You will need at least 48GB VRAM (e.g. Nvidia RTX-A6000) for running full experiments in this repo.
