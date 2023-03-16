@@ -57,7 +57,8 @@ pip install einops
 ```
 
 `Attn_model.py` has the same input/output format as `C3D_model.py` and `C4D_model.py`.
-```
+
+```python
 ### Old Convolution Model
 # from C3D_model import *
 # model = C3D(num_classes=2, batch_norm=opt.batch_norm).cuda()
@@ -74,7 +75,7 @@ model = Attn_model(
     mlp_dim = 512,
     dropout = 0.1,
     emb_dropout = 0.1
-    )
+    ).cuda()   ### use GPU
 ```
 
 ## Contacts
