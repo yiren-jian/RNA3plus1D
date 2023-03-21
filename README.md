@@ -5,6 +5,7 @@ This repo covers the implementation of "3+1D CNN model for RNA". The following f
 - [x] `C3D_model_new.py`
 - [x] `C4D_model.py`
 - [x] `Conv4d.py`
+- [x] `Attn_model.py`
 - [ ] `eval.py`
 - [ ] `pred.py`
 - [ ] `trainer.py`
@@ -82,4 +83,4 @@ model = Attn_model(
 For any questions, please contact authors.
 
 ## Acknowledgment
-Thanks the author for the original [Conv4d](https://github.com/ZhengyuLiang24/Conv4d-PyTorch) implementation.
+Thanks the author for the original [Conv4d](https://github.com/ZhengyuLiang24/Conv4d-PyTorch) and [vit-pytorch](https://github.com/lucidrains/vit-pytorch/blob/main/vit_pytorch/vit.py) implementation.
